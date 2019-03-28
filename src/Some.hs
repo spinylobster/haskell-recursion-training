@@ -68,5 +68,8 @@ reduce _ init [] = init
 reduce f acc (x:xs) = reduce f (f acc x) xs
 
 allSame :: Eq a => [a] -> Bool
-allSame = undefined
+allSame [] = True
+allSame (x:xs) = allSame' xs
+  where allSame' [] = True
+        allSame' (y:ys) = x == y && allSame' ys
 
