@@ -46,3 +46,6 @@ filter' = undefined
 reduce :: (result -> a -> result) -> result -> [a] -> result
 reduce = undefined
 
+allSame :: Eq a => [a] -> Bool
+allSame = undefined
+
