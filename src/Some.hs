@@ -8,41 +8,62 @@ fizzbuzz num
   | otherwise = show num
 
 factorial :: Int -> Int
-factorial = undefined
+factorial 0 = 1
+factorial n
+  | n < 0 = undefined
+  | otherwise = n * factorial (n - 1)
 
 sum' :: Num a => [a] -> a
-sum' = undefined
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
 
 length' :: [a] -> Int
-length' = undefined
+length' [] = 0
+length' (x:xs) = 1 + length' xs
 
 any' :: (a -> Bool) -> [a] -> Bool
-any' = undefined
+any' _ [] = False
+any' f (x:xs) = f x || any' f xs
 
 all' :: (a -> Bool) -> [a] -> Bool
-all' = undefined
+all' _ [] = True
+all' f (x:xs) = f x && all' f xs
 
 maximum' :: Ord a => [a] -> a
-maximum' = undefined
+maximum' [x] = x
+maximum' (x:xs) = if x > xsMax then x else xsMax
+  where xsMax = maximum' xs
+maximum' _ = undefined
 
 take' :: Int -> [a] -> [a]
-take' = undefined
+take' _ [] = []
+take' n (x:xs)
+  | n <= 0 = []
+  | otherwise = x : take' (n - 1) xs
 
 reverse' :: [a] -> [a]
-reverse' = undefined
+reverse' [] = []
+reverse' (x:xs)  = reverse' xs ++ [x]
 
 last' :: [a] -> a
-last' = undefined
+last' [x] = x
+last' (_:xs) = last' xs
+last' _ = undefined
 
 elem' :: Eq a => a -> [a] -> Bool
-elem' = undefined
+elem' _ [] = False
+elem' a (x:xs) = a == x || elem' a xs
 
 map' :: (a -> b) -> [a] -> [b]
-map' = undefined
+map' _ [] = []
+map' f (x:xs) = f x : map' f xs
 
 filter' :: (a -> Bool) -> [a] -> [a]
-filter' = undefined
+filter' _ [] = []
+filter' f (x:xs) = filtered ++ filter' f xs
+  where filtered = if f x then [x] else []
 
 reduce :: (result -> a -> result) -> result -> [a] -> result
-reduce = undefined
+reduce _ init [] = init
+reduce f acc (x:xs) = reduce f (f acc x) xs
 
