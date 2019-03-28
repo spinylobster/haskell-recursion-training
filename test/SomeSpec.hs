@@ -109,3 +109,12 @@ spec = do
     test (1, [1]) 2
     test (0, [1..10]) 55
 
+  describe "allSame" $ do
+    let test arg expected = it (show arg) $ allSame arg `shouldBe` expected
+    test ([]::[Int]) True
+    test [1] True
+    test [1,1,1,1,1] True
+    test [2,1,1,1,1] False
+    test [1,1,2,1,1] False
+    test [1,1,1,1,2] False
+

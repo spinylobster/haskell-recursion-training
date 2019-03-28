@@ -67,3 +67,6 @@ reduce :: (result -> a -> result) -> result -> [a] -> result
 reduce _ init [] = init
 reduce f acc (x:xs) = reduce f (f acc x) xs
 
+allSame :: Eq a => [a] -> Bool
+allSame = undefined
+
